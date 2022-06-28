@@ -26,8 +26,8 @@ interface NewsWithCategoryMapper {
             Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             Result(column = "title", property = "title", jdbcType = JdbcType.VARCHAR ),
             Result(column = "categoryId", property = "categoryId", jdbcType = JdbcType.BIGINT ),
-            Result(column = "publishAt", property = "", jdbcType = JdbcType.DATE),
-            Result(column = "createAt", property = "", jdbcType = JdbcType.DATE),
+            Result(column = "publishAt", property = "", jdbcType = JdbcType.TIMESTAMP),
+            Result(column = "createAt", property = "", jdbcType = JdbcType.TIMESTAMP),
             Result(column = "userId", property = "", jdbcType = JdbcType.BIGINT),
             Result(column = "body", property = "", jdbcType = JdbcType.VARCHAR),
             Result(column = "name", property = "", jdbcType = JdbcType.VARCHAR),
@@ -38,7 +38,7 @@ interface NewsWithCategoryMapper {
 
 
     @SelectProvider(type = SqlProviderAdapter::class, method = "select")
-    @ResultMap("BookWithRentalResult")
+    @ResultMap("NewsWithCategoryResult")
     fun selectOne(selectStatement: SelectStatementProvider): NewsWithCategory?
 }
 
