@@ -7,6 +7,7 @@ import java.sql.JDBCType
 import java.util.Date
 import org.mybatis.dynamic.sql.AliasableSqlTable
 import org.mybatis.dynamic.sql.util.kotlin.elements.column
+import java.time.LocalDateTime
 
 object NewsDynamicSqlSupport {
     val news = News()
@@ -32,9 +33,9 @@ object NewsDynamicSqlSupport {
 
         val categoryId = column<Long>(name = "category_id", jdbcType = JDBCType.BIGINT)
 
-        val publishAt = column<Date>(name = "publish_at", jdbcType = JDBCType.TIMESTAMP)
+        val publishAt = column<LocalDateTime>(name = "publish_at", jdbcType = JDBCType.TIMESTAMP)
 
-        val createAt = column<Date>(name = "create_at", jdbcType = JDBCType.TIMESTAMP)
+        val createAt = column<LocalDateTime>(name = "create_at", jdbcType = JDBCType.TIMESTAMP)
 
         val userId = column<Long>(name = "user_id", jdbcType = JDBCType.BIGINT)
 

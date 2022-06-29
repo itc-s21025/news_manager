@@ -29,8 +29,8 @@ interface NewsWithCategoryMapper {
             Result(column = "publish_At", property = "publishAt", jdbcType = JdbcType.TIMESTAMP),
             Result(column = "create_At", property = "create_At", jdbcType = JdbcType.TIMESTAMP),
             Result(column = "user_Id", property = "userId", jdbcType = JdbcType.BIGINT),
-            Result(column = "body", property = "", jdbcType = JdbcType.VARCHAR),
-            Result(column = "name", property = "", jdbcType = JdbcType.VARCHAR),
+            Result(column = "body", property = "body", jdbcType = JdbcType.VARCHAR),
+            Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
 
         ]
     )
