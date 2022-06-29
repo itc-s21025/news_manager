@@ -25,10 +25,10 @@ interface NewsWithCategoryMapper {
         id = "NewsWithCategoryResult", value = [
             Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             Result(column = "title", property = "title", jdbcType = JdbcType.VARCHAR ),
-            Result(column = "categoryId", property = "categoryId", jdbcType = JdbcType.BIGINT ),
-            Result(column = "publishAt", property = "", jdbcType = JdbcType.TIMESTAMP),
-            Result(column = "createAt", property = "", jdbcType = JdbcType.TIMESTAMP),
-            Result(column = "userId", property = "", jdbcType = JdbcType.BIGINT),
+            Result(column = "category_Id", property = "categoryId", jdbcType = JdbcType.BIGINT ),
+            Result(column = "publish_At", property = "publishAt", jdbcType = JdbcType.TIMESTAMP),
+            Result(column = "create_At", property = "create_At", jdbcType = JdbcType.TIMESTAMP),
+            Result(column = "user_Id", property = "userId", jdbcType = JdbcType.BIGINT),
             Result(column = "body", property = "", jdbcType = JdbcType.VARCHAR),
             Result(column = "name", property = "", jdbcType = JdbcType.VARCHAR),
 

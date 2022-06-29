@@ -19,28 +19,12 @@ class NewsRepositoryImpl (
             private val newsMapper: NewsMapper
 ) : NewsRepository {
     override fun findAllWithCategory(): List<NewsWithCategoryModel> {
-        return NewsWithCategoryMapper.select {  }.map { toModel(it) }
+        return NewsWithCategoryMapper.select { }.map { toModel(it) }
     }
 
-    override fun findWithCategory(id: Long): NewsWithCategoryModel? {
-        return NewsWithCategoryMapper.selectByPrimaryKey(id) {
-        }?.let { toModel(it) }
-    }
-
-    override fun register(news: News) {
-        newsMapper.insert(toRecord(news))
-    }
-
-    override fun update(id: Long, title: String?, categoryId: Long?, publishAt: LocalDate?) {
-        newsMapper.updateByPrimaryKeySelective(RecordNews(id, title, categoryId, publishAt))
-    }
-
-    override fun delete(id: Long) {
-        newsMapper.deleteByPrimaryKey(id)
-    }
 
     private fun toModel(record: NewsWithCategory): NewsWithCategoryModel {
-        val news = News (
+        val news = News(
             record.id!!,
             record.title!!,
             record.categoryId!!,
@@ -58,24 +42,31 @@ class NewsRepositoryImpl (
         return NewsWithCategoryModel(news, category)
     }
 
+}
+    /**
     private fun toRecord(model: news): RecordNews {
         return RecordNews(model.id, model.title, model.categoryId, model.publishAt)
     }
 
 }
 
+**/
+/**  あとから追加するオーバーライド文
+override fun findWithCategory(id: Long): NewsWithCategoryModel? {
+    return NewsWithCategoryMapper.selectByPrimaryKey(id) {
+    }?.let { toModel(it) }
+}
 
-/**BookRepository {
-    override fun findAllWithRental(): List<BookWithRental> {
-        return bookWithRentalMapper.select {  }.map { toModel(it)}
-    }
+override fun register(news: News) {
+    newsMapper.insert(toRecord(news))
+}
 
-Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
-Result(column = "title", property = "title", jdbcType = JdbcType.VARCHAR ),
-Result(column = "categoryId", property = "categoryId", jdbcType = JdbcType.BIGINT ),
-Result(column = "publishAt", property = "", jdbcType = JdbcType.TIMESTAMP),
-Result(column = "createAt", property = "", jdbcType = JdbcType.TIMESTAMP),
-Result(column = "userId", property = "", jdbcType = JdbcType.BIGINT),
-Result(column = "body", property = "", jdbcType = JdbcType.VARCHAR),
-Result(column = "name", property = "", jdbcType = JdbcType.VARCHAR),
+override fun update(id: Long, title: String?, categoryId: Long?, publishAt: LocalDate?) {
+    newsMapper.updateByPrimaryKeySelective(RecordNews(id, title, categoryId, publishAt))
+}
+
+override fun delete(id: Long) {
+    newsMapper.deleteByPrimaryKey(id)
+}
+
 **/
