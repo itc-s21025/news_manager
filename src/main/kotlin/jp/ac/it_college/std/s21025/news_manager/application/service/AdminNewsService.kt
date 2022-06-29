@@ -26,19 +26,6 @@ class AdminNewsService (
             newsRepository.update(id, title, categoryId, publishAt, createAt, userId, body)
         }
 
-
-    //override fun update(
-    //        id: Long,
-    //        title: String?,
-    //        categoryId: Long,
-    //        publisherAt: LocalDateTime,
-    //        createAt: LocalDateTime,
-    //        userId: Long,
-    //        body: String
-    //    ) {
-    //        newsMapper.updateByPrimaryKeySelective(News(id, title, categoryId, publisherAt, createAt, userId, body))
-    //    }
-
         @Transactional
         fun delete(id: Long) {
             newsRepository.findWithCategory(id) ?: throw IllegalArgumentException("存在しないnewsID: $id")

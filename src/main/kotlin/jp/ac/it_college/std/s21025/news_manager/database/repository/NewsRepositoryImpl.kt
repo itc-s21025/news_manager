@@ -9,6 +9,7 @@ import jp.ac.it_college.std.s21025.news_manager.domain.model.Category
 import jp.ac.it_college.std.s21025.news_manager.domain.repository.NewsRepository
 import org.springframework.stereotype.Repository
 import jp.ac.it_college.std.s21025.news_manager.database.mapper.insert
+import java.time.LocalDateTime
 
 
 @Repository
@@ -31,7 +32,11 @@ class NewsRepositoryImpl (
     }
 
     private fun toRecord(model: News): RecordNews {
-        return RecordNews(model.id, model.title, model.categoryId, model.body, model.publishAt, model.createAt, model.userId)
+        return RecordNews(model.id, model.title, model.categoryId, model.body, model.publishAt, model.createAt)
+    }
+
+    override fun update(id: Long, title: String?, categoryId: Long?, publishAt: LocalDateTime?, createAt: LocalDateTime?, userId: Long?, body: String? ) {
+        newsMapper.updateByPrimaryKeySelective(RecordNews(id, title, categoryId, body, publishAt,createAt))
     }
 
     /**override fun update(
@@ -57,8 +62,7 @@ class NewsRepositoryImpl (
             record.body!!,
             record.publishAt!!,
             record.createAt!!,
-            record.categoryId!!,
-            record.userId!!
+            record.categoryId!!
         )
         val category = record.id?.let {
             Category(

@@ -12,7 +12,7 @@ interface NewsRepository {
 
     fun register(news: News)
 
-    /**fun update(
+    fun update(
         id: Long,
         title: String?,
         categoryId: Long?,
@@ -21,7 +21,7 @@ interface NewsRepository {
         userId: Long?,
         body: String?
     )
-    **/
+
 
     fun delete(id: Long)
 
