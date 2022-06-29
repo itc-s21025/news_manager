@@ -4,6 +4,7 @@ import jp.ac.it_college.std.s21025.news_manager.database.record.NewsWithCategory
 import jp.ac.it_college.std.s21025.news_manager.domain.model.Category
 import jp.ac.it_college.std.s21025.news_manager.domain.model.NewsWithCategoryRecord
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 data class GetNewsListResponse(val newsList: List<NewsInfo>)
@@ -12,7 +13,7 @@ data class NewsInfo (
     val id: Long,
     val title: String,
     val body: String,
-    val createAt: Date,
+    val publishAt: LocalDateTime
 ) {
     constructor(model: NewsWithCategoryRecord) : this(
         model.news.id, model.news.title, model.news.body, model.news.publishAt
@@ -22,7 +23,7 @@ data class GetNewsDetailResponse(
     val id: Long,
     val title: String,
     val body: String,
-    val createAt: Date,
+    val createAt: LocalDateTime,
     val CategoryInfo: CategoryInfo?,
 ) {
     constructor(model: NewsWithCategoryRecord) : this(
@@ -50,7 +51,7 @@ data class RegisterNewsRequest(
     val id: Long,
     val title: String,
     val categoryId: String,
-    val publishAt: Date,
+    val publishAt: LocalDateTime,
 
 )
 

@@ -28,13 +28,19 @@ class AdminNewsController(
             )
         )
     }
-
+/**
+    @PutMapping("/update")
+    fun update(@RequestBody request: RegisterNewsRequest) {
+        adminNewsService.update(request.,)
+    }
+    /**
     @PutMapping("/update")
     fun update(@RequestBody request: UpdateNewsRequest) {
         with(request) {
-            adminNewsService.update(id, title, body, createAt)
+            adminNewsService.update(id, title, categoryId, publishAt, createAt, userId, body)
         }
-    }
+    **/
+**/
 
     @DeleteMapping("/delete/{id}")
     fun delete(@PathVariable("id") id: Long) {
