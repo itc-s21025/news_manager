@@ -8,7 +8,7 @@ import jp.ac.it_college.std.s21025.news_manager.domain.enum.RoleType
 import org.mybatis.dynamic.sql.AliasableSqlTable
 import org.mybatis.dynamic.sql.util.kotlin.elements.column
 
-object UsersDynamicSqlSupport {
+object UserDynamicSqlSupport {
     val users = Users()
 
     val id = users.id

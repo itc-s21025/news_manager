@@ -1,6 +1,7 @@
 package jp.ac.it_college.std.s21025.news_manager.application.security
 
 import jp.ac.it_college.std.s21025.news_manager.application.service.AuthenticationService
+import jp.ac.it_college.std.s21025.news_manager.database.mapper.CategoryDynamicSqlSupport.category
 import jp.ac.it_college.std.s21025.news_manager.domain.enum.RoleType
 import jp.ac.it_college.std.s21025.news_manager.domain.model.User
 import org.springframework.security.core.GrantedAuthority
@@ -11,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 class NewsWithCategoryUserDetailsService(
     private val authenticationService: AuthenticationService
 ) : UserDetailsService {
-    override fun loadUserByUsername(username: String): UserDetails? {
+    override fun loadUserByUsername(username: String): UserDetails? {category
         val user = authenticationService.findUser(username ?: "")
         return user?.let { NewsWithCategoryUserDetails(user) }
     }

@@ -5,7 +5,7 @@ package jp.ac.it_college.std.s21025.news_manager.database.record
 
 import jp.ac.it_college.std.s21025.news_manager.domain.enum.RoleType
 
-data class Users(
+data class User(
     var id: Long? = null,
     var username: String? = null,
     var password: String? = null,

@@ -13,5 +13,4 @@ data class NewsWithCategory(
     var createAt: LocalDateTime? = null,
     var userId: Long? = null,
     var body: String? = null,
-    var name: String? = null
 )

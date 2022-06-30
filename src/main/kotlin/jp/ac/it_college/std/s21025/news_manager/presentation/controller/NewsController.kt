@@ -21,16 +21,10 @@ class NewsController (
         return GetNewsListResponse(newsList)
     }
 
-    @GetMapping("/detail/{category_Id}")
-    fun getDetail(@PathVariable("category_Id") categoryId: Long): GetNewsDetailResponse {
-        val news = newsService.getDetail(categoryId)
+    @GetMapping("/detail/{news_id}")
+    fun getDetail(@PathVariable("news_id") newsId: Long): GetNewsDetailResponse {
+        val news = newsService.getDetail(newsId)
         return GetNewsDetailResponse(news)
     }
 }
 
-/**
-@GetMapping("/detail/{category_Id}")
-fun getDetail(@PathVariable("category_Id") categoryId: Long): GetNewsDetailResponse {
-    val news = newsService.getDetail(categoryId)
-    return GetNewsDetailResponse(news)
-}**/

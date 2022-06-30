@@ -5,10 +5,11 @@ import java.time.LocalDateTime
 data class News(
     val id: Long,
     val title: String,
-    val body: String,
+    val categoryId: Long,
     val publishAt: LocalDateTime,
     val createAt: LocalDateTime,
-    val categoryId: Long
+    val userId: Long,
+    val body: String,
 )
 
 

@@ -3,13 +3,13 @@
  */
 package jp.ac.it_college.std.s21025.news_manager.database.mapper
 
-import jp.ac.it_college.std.s21025.news_manager.database.mapper.UsersDynamicSqlSupport.id
-import jp.ac.it_college.std.s21025.news_manager.database.mapper.UsersDynamicSqlSupport.password
-import jp.ac.it_college.std.s21025.news_manager.database.mapper.UsersDynamicSqlSupport.roleType
-import jp.ac.it_college.std.s21025.news_manager.database.mapper.UsersDynamicSqlSupport.username
-import jp.ac.it_college.std.s21025.news_manager.database.mapper.UsersDynamicSqlSupport.users
-import jp.ac.it_college.std.s21025.news_manager.database.mapper.UsersDynamicSqlSupport.viewName
-import jp.ac.it_college.std.s21025.news_manager.database.record.Users
+import jp.ac.it_college.std.s21025.news_manager.database.mapper.UserDynamicSqlSupport.id
+import jp.ac.it_college.std.s21025.news_manager.database.mapper.UserDynamicSqlSupport.password
+import jp.ac.it_college.std.s21025.news_manager.database.mapper.UserDynamicSqlSupport.roleType
+import jp.ac.it_college.std.s21025.news_manager.database.mapper.UserDynamicSqlSupport.username
+import jp.ac.it_college.std.s21025.news_manager.database.mapper.UserDynamicSqlSupport.users
+import jp.ac.it_college.std.s21025.news_manager.database.mapper.UserDynamicSqlSupport.viewName
+import jp.ac.it_college.std.s21025.news_manager.database.record.User
 import org.apache.ibatis.annotations.Mapper
 import org.apache.ibatis.annotations.Result
 import org.apache.ibatis.annotations.ResultMap
@@ -38,7 +38,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.CommonInsertMapper
 import org.mybatis.dynamic.sql.util.mybatis3.CommonUpdateMapper
 
 @Mapper
-interface UsersMapper : CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<Users>, CommonUpdateMapper {
+interface UsersMapper : CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<User>, CommonUpdateMapper {
     @SelectProvider(type=SqlProviderAdapter::class, method="select")
     @Results(id="UsersResult", value = [
         Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
@@ -47,11 +47,11 @@ interface UsersMapper : CommonCountMapper, CommonDeleteMapper, CommonInsertMappe
         Result(column="view_name", property="viewName", jdbcType=JdbcType.VARCHAR),
         Result(column="role_type", property="roleType", typeHandler=EnumTypeHandler::class, jdbcType=JdbcType.VARCHAR)
     ])
-    fun selectMany(selectStatement: SelectStatementProvider): List<Users>
+    fun selectMany(selectStatement: SelectStatementProvider): List<User>
 
     @SelectProvider(type=SqlProviderAdapter::class, method="select")
     @ResultMap("UsersResult")
-    fun selectOne(selectStatement: SelectStatementProvider): Users?
+    fun selectOne(selectStatement: SelectStatementProvider): User?
 }
 
 fun UsersMapper.count(completer: CountCompleter) =
@@ -65,7 +65,7 @@ fun UsersMapper.deleteByPrimaryKey(id_: Long) =
         where { id isEqualTo id_ }
     }
 
-fun UsersMapper.insert(row: Users) =
+fun UsersMapper.insert(row: User) =
     insert(this::insert, row, users) {
         map(id) toProperty "id"
         map(username) toProperty "username"
@@ -74,7 +74,7 @@ fun UsersMapper.insert(row: Users) =
         map(roleType) toProperty "roleType"
     }
 
-fun UsersMapper.insertMultiple(records: Collection<Users>) =
+fun UsersMapper.insertMultiple(records: Collection<User>) =
     insertMultiple(this::insertMultiple, records, users) {
         map(id) toProperty "id"
         map(username) toProperty "username"
@@ -83,10 +83,10 @@ fun UsersMapper.insertMultiple(records: Collection<Users>) =
         map(roleType) toProperty "roleType"
     }
 
-fun UsersMapper.insertMultiple(vararg records: Users) =
+fun UsersMapper.insertMultiple(vararg records: User) =
     insertMultiple(records.toList())
 
-fun UsersMapper.insertSelective(row: Users) =
+fun UsersMapper.insertSelective(row: User) =
     insert(this::insert, row, users) {
         map(id).toPropertyWhenPresent("id", row::id)
         map(username).toPropertyWhenPresent("username", row::username)
@@ -114,7 +114,7 @@ fun UsersMapper.selectByPrimaryKey(id_: Long) =
 fun UsersMapper.update(completer: UpdateCompleter) =
     update(this::update, users, completer)
 
-fun KotlinUpdateBuilder.updateAllColumns(row: Users) =
+fun KotlinUpdateBuilder.updateAllColumns(row: User) =
     apply {
         set(id) equalToOrNull row::id
         set(username) equalToOrNull row::username
@@ -123,7 +123,7 @@ fun KotlinUpdateBuilder.updateAllColumns(row: Users) =
         set(roleType) equalToOrNull row::roleType
     }
 
-fun KotlinUpdateBuilder.updateSelectiveColumns(row: Users) =
+fun KotlinUpdateBuilder.updateSelectiveColumns(row: User) =
     apply {
         set(id) equalToWhenPresent row::id
         set(username) equalToWhenPresent row::username
@@ -132,7 +132,7 @@ fun KotlinUpdateBuilder.updateSelectiveColumns(row: Users) =
         set(roleType) equalToWhenPresent row::roleType
     }
 
-fun UsersMapper.updateByPrimaryKey(row: Users) =
+fun UsersMapper.updateByPrimaryKey(row: User) =
     update {
         set(username) equalToOrNull row::username
         set(password) equalToOrNull row::password
@@ -141,7 +141,7 @@ fun UsersMapper.updateByPrimaryKey(row: Users) =
         where { id isEqualTo row.id!! }
     }
 
-fun UsersMapper.updateByPrimaryKeySelective(row: Users) =
+fun UsersMapper.updateByPrimaryKeySelective(row: User) =
     update {
         set(username) equalToWhenPresent row::username
         set(password) equalToWhenPresent row::password

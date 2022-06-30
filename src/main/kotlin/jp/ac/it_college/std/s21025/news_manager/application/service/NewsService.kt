@@ -10,11 +10,11 @@ class NewsService (
     private val newsRepository: NewsRepository
 ) {
     fun getList(): List<NewsWithCategoryRecord> {
-        return newsRepository.findAllWithCategory()
+        return newsRepository.findAllWihCategory()
     }
-
 
     fun getDetail(newsId: Long): NewsWithCategoryRecord {
-        return newsRepository.findWithCategory(newsId) ?: throw IllegalArgumentException("存在しないnewsID： $newsId")
+        return newsRepository.findWithCategory(newsId) ?: throw IllegalArgumentException("存在しないID: $newsId")
     }
 }
+
