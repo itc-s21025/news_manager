@@ -8,7 +8,6 @@ import jp.ac.it_college.std.s21025.news_manager.database.mapper.updateByPrimaryK
 import org.springframework.stereotype.Repository
 import jp.ac.it_college.std.s21025.news_manager.database.record.Category as RecordCategory
 
-
 @Repository
 class CategoryRepositoryImpl(
     private val categoryMapper: CategoryMapper

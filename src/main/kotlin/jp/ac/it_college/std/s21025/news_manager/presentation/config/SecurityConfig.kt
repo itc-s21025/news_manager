@@ -62,7 +62,7 @@ class SecurityConfig(private val authenticationService: AuthenticationService) {
         val config = CorsConfiguration().apply {
             addAllowedMethod(CorsConfiguration.ALL)
             addAllowedHeader(CorsConfiguration.ALL)
-            addAllowedOrigin("http://localhost:8081")
+            addAllowedOrigin("http://localhost:8080")
             allowCredentials = true
         }
 
